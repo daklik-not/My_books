@@ -1,0 +1,14 @@
+{% extends "djbooks/layout.html" %}
+{% block title %}
+Edit Author
+{% endblock %}
+
+{% block content %}
+
+<form method="post" novalidate>
+    {% csrf_token %}
+    {{ f.as_p }}
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock %}

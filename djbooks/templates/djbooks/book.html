@@ -1,0 +1,19 @@
+{% extends "djbooks/layout.html" %}
+{% block title %}
+Book_inf
+{% endblock %}
+
+{% block content %}
+
+<p><b>Book Title:</b> {{book_query.title}}</p>
+<p><b>Publication date:</b> {{book_query.publication_date}}</p>
+
+<h3><b>Publisher:</b></h3>
+<p>{{book_query.publisher.name}}</p>
+
+<h3><b>Authors:</b></h3>
+{% for a in book_query.authors.all %}
+<li>{{a.name}}</li>
+{% endfor %}
+
+{% endblock %}

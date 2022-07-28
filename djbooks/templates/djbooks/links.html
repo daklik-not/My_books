@@ -1,0 +1,26 @@
+{% extends "djbooks/layout.html" %}
+{% block title %}
+Add your link 
+{% endblock %}
+{% block content %}
+Here you can add your link on authors, publisher, or books.
+
+<form method="post" novalidate>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit">
+</form>
+
+
+<ul>
+{%for links in links_queryset%}
+<li><a href="{{links.url}}">
+    {{links.url}}
+</a>
+</li>
+{%endfor%}
+</ul>
+
+
+
+{% endblock %}

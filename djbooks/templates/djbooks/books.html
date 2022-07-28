@@ -1,0 +1,26 @@
+{% extends "djbooks/layout.html" %}
+{% block title %}
+Booklist
+{% endblock %}
+
+{% block content %}
+
+<h2>Book list</h2>
+<div class="w3-container w3-center">
+    <ul class="w3-ul w3-border">
+        {% for b in book_queryset %}
+        {% ifchanged b.title.0 %}
+        <h3><b> {{ b.title.0 }} </b></h3>
+        {% for f in book_queryset %}
+        {% if b.title.0 == f.title.0 %}
+        <li>
+            <h3> {{ f.title }}</h3>
+        </li>
+        {% endif %}
+        {% endfor %}
+        {% endifchanged %}
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

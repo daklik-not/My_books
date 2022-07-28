@@ -1,0 +1,11 @@
+{% extends "djbooks/layout.html" %}
+{% block title %}
+Profile
+{% endblock %}
+
+{% block content %}
+<form disabled="True" method="get" novalidate>
+    {% csrf_token %}
+    {{ f.as_p }}
+</form>
+{% endblock %}

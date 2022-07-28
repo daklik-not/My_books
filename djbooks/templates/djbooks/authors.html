@@ -1,0 +1,169 @@
+{% extends "djbooks/layout.html" %}
+{% block title%}
+    Authorlist
+{% endblock %}
+
+{% block content %}
+<div style="text-align:center;padding:15px">
+<h2>Author list</h2>
+</div>
+<div class="w3-container w3-center">
+    {% if msg %}
+    <div class="w3-panel w3-pale-green w3-display-container" id='message'>
+        <span onclick="this.parentElement.style.display='none'"
+            class="w3-button w3-large w3-display-topright">&times;</span>
+        <h3>Success!</h3>
+        <p>{{ msg }}</p>
+    </div>
+    <script>
+        setTimeout(function () { document.getElementById('message').style.display = 'none'; }, 3000);
+    </script>
+    {% endif %}
+
+<div style="padding:1px">
+<div class = 'container'>
+    <table class='table table-hover table-bordered'>
+        <tr>
+        <th>Name</th>
+        <th>Salutation</th>
+        <th>Email</th>
+        <th>Edit</th>
+        <th>Delete</td>
+        </tr>
+
+        {% for ath in authors_queryset %}
+            <tr>
+                <td>{{ ath.name }}</td>
+                <td>{{ ath.salutation }}</td>
+                <td>{{ ath.email }}</td>
+                <td>
+                  <a href= "{% url 'edauthor' ath.id %}">
+                    <span>Edit</span></a>
+                  </td> 
+                  <td>
+                  <a href= "{% url 'deleteauthor' ath.id %}">
+                    <span>delete</span></a> 
+                </td>
+            </tr>
+        {%endfor%}
+    </table>
+</div>
+</div>
+
+
+
+<div style="padding:30px;text-align:center" >
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+    Add author
+  </button>
+</div>
+
+
+
+  <div class="modal" id="myModal" style='text-align:center'>
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Add Author</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+          <div class="modal-body", style='text-align:center;padding:200px;font-size:30px'>
+          <form method="post" novalidate>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Submit">
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<div class = ' w3-container w3-center'>
+    <ul class="w3-ul w3-border">
+
+        {% for a in authors_queryset %}
+        {% ifchanged a.name.0 %}
+        <b><mark>
+                <h2>{{ a.name.0}}</h2>
+            </mark></b>
+        {% for ath in authors_queryset %}
+        {% if a.name.0 == ath.name.0 %}
+        <li>
+            <h3>{{ ath.name }}</h3>
+        </li>
+        {%endif%}
+        {% endfor %}
+        {% endifchanged %}
+        {% endfor %}
+    </ul>
+</div>
+
+-->

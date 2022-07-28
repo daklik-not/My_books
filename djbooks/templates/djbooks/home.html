@@ -1,0 +1,28 @@
+{% extends "djbooks/layout.html" %}
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+<!--<img src = 'https://techcrunch.com/wp-content/uploads/2019/01/GettyImages-876317622.jpg' alt="W3Schools.com"  width="104"  height="142">  -->
+<div class="w3-container">
+    {% if msg %}
+    <div class="w3-panel w3-pale-green w3-display-container">
+        <span onclick="this.parentElement.style.display='none'"
+            class="w3-button w3-large w3-display-topright">&times;</span>
+        <h3>Success!</h3>
+        <p>{{ msg }}</p>
+    </div>
+    {% endif %}
+    <h2>Publishers</h2>
+    <ul class="w3-ul w3-border w3-center">
+        {% for publisher in publisher_queryset %}
+        <li><a href="{% url 'publisher' publisher.id %}">
+                <h3>Издатель {{ publisher.name }}</h3>
+            </a></li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}
